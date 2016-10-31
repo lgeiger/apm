@@ -69,8 +69,7 @@ module.exports =
   getElectronArch: ->
     switch process.platform
       when 'darwin' then 'x64'
-      when 'win32' then 'ia32'
-      else process.arch  # On BSD and Linux we use current machine's arch.
+      else process.arch  # On BSD, Windows and Linux we use current machine's arch.
 
   getUserConfigPath: ->
     path.resolve(@getAtomDirectory(), '.apmrc')
@@ -80,9 +79,6 @@ module.exports =
 
   isWin32: ->
     process.platform is 'win32'
-
-  isWindows64Bit: ->
-    fs.existsSync "C:\\Windows\\SysWow64\\Notepad.exe"
 
   x86ProgramFilesDirectory: ->
     process.env["ProgramFiles(x86)"] or process.env["ProgramFiles"]
